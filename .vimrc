@@ -4,6 +4,9 @@
 " 关闭兼容模式
 set nocompatible
 
+" 不用保存就可以切换 
+set hidden
+
 " 定义快捷键的前缀，即<Leader>                  Leader
 let mapleader=";"
 
@@ -46,16 +49,16 @@ nnoremap <Leader>wj <C-W>j
 " 多文档切换快捷键
 map <leader>. :w<cr>:bn<cr>
 map <leader>, :w<cr>:bp<cr>
-noremap <silent><leader>1 :bn1<cr>
-noremap <silent><leader>2 :bn2<cr>
-noremap <silent><leader>3 :bn3<cr>
-noremap <silent><leader>4 :bn4<cr>
-noremap <silent><leader>5 :bn5<cr>
-noremap <silent><leader>6 :bn6<cr>
-noremap <silent><leader>7 :bn7<cr>
-noremap <silent><leader>8 :bn8<cr>
-noremap <silent><leader>9 :bn9<cr>
-noremap <silent><leader>0 :bn10<cr>
+noremap <silent><leader>1 :b1<cr>
+noremap <silent><leader>2 :b2<cr>
+noremap <silent><leader>3 :b3<cr>
+noremap <silent><leader>4 :b4<cr>
+noremap <silent><leader>5 :b5<cr>
+noremap <silent><leader>6 :b6<cr>
+noremap <silent><leader>7 :b7<cr>
+noremap <silent><leader>8 :b8<cr>
+noremap <silent><leader>9 :b9<cr>
+noremap <silent><leader>0 :b10<cr>
 
 
 fun! ToggleFullscreen()
@@ -121,7 +124,7 @@ nmap <leader>vman :VMan 3 <cword><CR>
 
 
 "  编译                                                编译
-nmap <Leader>make :!rm -rf main<CR>:wa<CR>:make<CR><CR>:cw<CR>
+nmap <leader>make :!rm -rf main<CR>:wa<CR>:make<CR><CR>:cw<CR>
 nmap <Leader>go :!rm -rf main<CR>:wa<CR>:make<CR>:cw<CR><CR>:!./main<CR>
 
 "---------------------------------------------------------------
@@ -153,6 +156,7 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'yegappan/grep'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Yggdroot/LeaderF'
 
 " ctags标签书签相关
 Plugin 'majutsushi/tagbar'
@@ -164,9 +168,6 @@ Plugin 'kshenoy/vim-signature'
 " 结对符相关
 Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
-
-" buffer相关
-Plugin 'Shougo/unite.vim'
 
 " 其他
 Plugin 'derekwyatt/vim-fswitch'
@@ -186,7 +187,7 @@ let g:ycm_complete_in_comments=1
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
 let g:ycm_confirm_extra_conf=0
 " 使用全局的ycm_extra_conf文件配置
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 " 开启 YCM 标签补全引擎
 let g:ycm_collect_identifiers_from_tags_files=1
 " 引入 C++ 标准库tags
@@ -272,12 +273,28 @@ noremap <Leader>sp :CtrlSF<CR>
 " let g:multi_cursor_next_key='<S-n>'
 " let g:multi_cursor_skip_key='<S-k>'
 
-
+" LeaderF                                           buffer file 搜索
+" 在当前目录查找
+nnoremap <leader>fl :LeaderfFile %:h<cr>
+" 在当前用户目录查找
+nnoremap <leader>fu :LeaderfFile ~<cr>
+" 自定义查找位置, 可以输入../之类的
+nnoremap <leader>fc :LeaderfFile 
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+" 上下键切换选项
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 
 " ----------------------------------------------------------ctags标签相关
 " indexer                                         自动更新标签                                                     
 " 修改ctags生成tags文件的参数
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
+" let g:indexer_disableCtagsWarning=1
 
 " tagbar                                              标签窗口
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边
@@ -353,6 +370,8 @@ let g:SignatureMap = {
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
+
+
 " -------------------------------------------------------结对符相关
 " wildfire.vim                                        结对符内容选中
 " 快捷键
@@ -375,7 +394,7 @@ vmap > S>
 
 "------------------------------------------------------其他
 " nerdtree                                        查看工程文件
-nmap <Leader>fl :NERDTreeToggle<CR>
+" nmap <leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=16
 " 设置NERDTree子窗口位置

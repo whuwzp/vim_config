@@ -25,9 +25,7 @@ flags = [
     '-isystem', 
     '/usr/local/include/c++/v1/',
     '-isystem',                           # for cs-pnp
-    '/home/ing/CS-PNP/muduo/',            # for cs-pnp
-    '-isystem',                           # for cs-pnp
-    '/usr/local/include/boost/',
+    '/usr/local/boost/include/',
     '-isystem',
     '/usr/include/',
     '-isystem',

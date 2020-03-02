@@ -1,8 +1,20 @@
+# vim 学习
+
+1. 简介: 源码编译使用vim及其插件. 
+2. 内容包含: vim的编译安装, llvm clang的编译安装, 插件youcompleteme的编译安装使用, 以及vim其他插件的使用.
+3. 搭建环境: Ubuntu18.04.4 server版(desktop版应该也适用)
+4. 环境还原方式: 
+    - 坚果云上保存: `.vim`文件的压缩包,以免以后换环境时都得下载, 使用时直接解压至`~/.vim`
+    - GitHub上保存: `.vimrc`, `.clang-format`, `.ycm_extra_conf.py`等配置文件, 地址: https://github.com/whuwzp/vim_config
+5. 主要参考网址如下, 基本上都是参照官方方法, 而不是在博客网站上拾人牙慧: 
+    - vim源码编译: https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
+    - llvm clang编译: https://llvhttps://m.org/docs/GettingStarted.html#getting-started-with-llvm
+    - youcompleteme编译使用: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
+    - 其他c++插件: https://github.com/yangyangwithgnu/use_vim_as_ide。
+
 Table of Contents
 =================
 
-   * [说明](#说明)
-   * [项目目录说明](#项目目录说明)
    * [vim 学习](#vim-学习)
       * [1. vim源码编译安装](#1-vim源码编译安装)
       * [2. 源码编译安装llvm clang](#2-源码编译安装llvm-clang)
@@ -28,6 +40,7 @@ Table of Contents
             * [4.6.1 indexer自动更新标签](#461-indexer自动更新标签)
             * [4.6.2 tagbar标签栏](#462-tagbar标签栏)
             * [4.6.3 signature书签收藏](#463-signature书签收藏)
+            * [4.6.4 LeaderF 文档和buffer搜索](#464-leaderf-文档和buffer搜索)
          * [4.7 结对符相关](#47-结对符相关)
             * [4.7.1 wildfire.vim结对符内容选中](#471-wildfirevim结对符内容选中)
             * [4.7.2 vim-surround选中内容加结对符](#472-vim-surround选中内容加结对符)
@@ -49,37 +62,6 @@ Table of Contents
          * [5.9 系统剪切板](#59-系统剪切板)
          * [5.10 man支持](#510-man支持)
 
-
-# 说明
-本项目记载自己学习使用vim和插件的信息, 主要是按照以下博客系统学习, 感谢大佬: https://github.com/yangyangwithgnu/use_vim_as_ide.
-
-我自己的学习记录在以下网址: https://whuwzp.github.io/tech-6-vim使用.html. 
-
-(.vim里面的内容是无法上传的,我自己保存在了自己的坚果云中,以免又要等github的龟速下载)
-
-# 项目目录说明
-
-1. `.vimrc`: .vimrc文件,放在~/.vimrc
-2. `.indexer_files`: indexer和tags相关的文件配置
-3. `.clang-format`: 这是clang-format代码对齐格式的配置
-4. `mysnippets/cpp.snippets`: 这个是cpp模板补齐的设置文档
-5. `test`: 这是工程的示例,里面有.ycm_extra_conf.py和CMakeLists.txt供参考
-
-
-
-# vim 学习
-
-1. 简介: 源码编译使用vim及其插件. 
-2. 内容包含: vim的编译安装, llvm clang的编译安装, 插件youcompleteme的编译安装使用, 以及vim其他插件的使用.
-3. 搭建环境: Ubuntu18.04.4 server版(desktop版应该也适用)
-4. 环境还原方式: 
-    - 坚果云上保存: `.vim`文件的压缩包,以免以后换环境时都得下载, 使用时直接解压至`~/.vim`
-    - GitHub上保存: `.vimrc`, `.clang-format`, `.ycm_extra_conf.py`等配置文件, 地址: https://github.com/whuwzp/vim_config
-5. 主要参考网址如下, 基本上都是参照官方方法, 而不是在博客网站上拾人牙慧: 
-    - vim源码编译: https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
-    - llvm clang编译: https://m.org/docs/GettingStarted.html#getting-started-with-llvm
-    - youcompleteme编译使用: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
-    - 其他c++插件: https://github.com/yangyangwithgnu/use_vim_as_ide。
 
 ## 1. vim源码编译安装
 
@@ -119,13 +101,13 @@ Table of Contents
     # 截至20200301, 此方法最新版是8.2
     ```
   
-> 注意:
-> 1. python2和python3只能选择一个安装: 有些博客在configure那一步同时enable了python2和python3是有问题的(安装参考网址的说法), 这里选择了python3, 后面在youcompleteme中需要用python3, 并且python3是趋势, 所以这里选择python3. (如果要选择python2, 只需要把上面的python3改为python)
-> 2. `with-python3-config-dir`: 这个的查看方式是: 命令行`python --version`, 我的是3.6, 所以就在`/usr/lib/python3.6/`中去找类似`config-3.6m-x86_64-linux-gnu`这样名字的文件夹, 总之就是确保: python3版本和路径一致, 路径正确.
+注意:
+1. python2和python3只能选择一个安装: 有些博客在configure那一步同时enable了python2和python3是有问题的(安装参考网址的说法), 这里选择了python3, 后面在youcompleteme中需要用python3, 并且python3是趋势, 所以这里选择python3. (如果要选择python2, 只需要把上面的python3改为python)
+2. `with-python3-config-dir`: 这个的查看方式是: 命令行`python --version`, 我的是3.6, 所以就在`/usr/lib/python3.6/`中去找类似`config-3.6m-x86_64-linux-gnu`这样名字的文件夹, 总之就是确保: python3版本和路径一致, 路径正确.
 
 ## 2. 源码编译安装llvm clang
 
-参考网址: https://m.org/docs/GettingStarted.html#getting-started-with-llvm
+参考网址: https://llvhttps://m.org/docs/GettingStarted.html#getting-started-with-llvm
 
 1. 安装准备环境
     ```sh
@@ -154,9 +136,9 @@ Table of Contents
     # 截至20200301最新版是11.0
     ```
 
-> 注意:
-> 1. `cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ../llvm`: 这一步不要改动
-> 2. `DLLVM_ENABLE_PROJECTS`: 这里面选择要安装的选项, 分号分隔, 参看网址选择, 一般都选`clang;libcxx;libcxxabi;compiler-rt;clang-tools-extra`, 我怕后期又要装啥麻烦, 就又选了lldb(调试), lld(链接优化)
+注意:
+1. `cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ../llvm`: 这一步不要改动
+2. `DLLVM_ENABLE_PROJECTS`: 这里面选择要安装的选项, 分号分隔, 参看网址选择, 一般都选`clang;libcxx;libcxxabi;compiler-rt;clang-tools-extra`, 我怕后期又要装啥麻烦, 就又选了lldb(调试), lld(链接优化)
 
 ## 3. youcompleteme编译安装
 
@@ -287,16 +269,16 @@ Table of Contents
     ```
     这个在 https://github.com/whuwzp/vim_config 中有保存
     
-> 注意: 
-> 1. `.ycm_extra_conf.py`中的头文件添加方法: 我安装clang是用默认的路径`/usr/local`,所以增加了`'-isystem', '/usr/local/include/c++/v1/'`
+注意: 
+1. `.ycm_extra_conf.py`中的头文件添加方法: 我安装clang是用默认的路径`/usr/local`,所以增加了`'-isystem', '/usr/local/include/c++/v1/'`
     - `'-isystem','/usr/include/'`: 这个是系统头文件
     - `'-isystem','/usr/'`: 这也是系统的
     - `'-isystem','/usr/include/x86_64-linux-gnu/'`:这个是linux的
-> 2. 如果发现某个函数不能补全或者报错的解决方法
+2. 如果发现某个函数不能补全或者报错的解决方法
     先看看函数所属的头文件,然后在百度或者直接去/usr/include,等位置去找找, 然后添加到`.ycm_extra_conf.py`中, 例如`sys/socket.h`没有自动补全,百度发现在`/usr/include/x86_64-linux-gnu/`中, 然后在添加`'-isystem','/usr/include/x86_64-linux-gnu/'`即可
-> 3. 强烈建议**不要复制头文件到/usr/include**
+3. 强烈建议**不要复制头文件到/usr/include**
     这样图一时方便,但全都混乱了,就用上一步的方法最好,也便于自己理解各头文件的位置
-> 4. ycm server shutdown的解决方法
+4. ycm server shutdown的解决方法
     需要进入`~/.vim/bundle/youcompleteme`目录下,install,具体如下:
     ```sh
     # 如果不执行这一步,下一步就报错
@@ -305,10 +287,10 @@ Table of Contents
     sudo ./install.sh --clang-completer
     # 如果上一步报错缺少regex或者cregex,那就是git submodule update --init --recursive没有完全下载,那就去目录下找,例如我的是regex,到youcompleteme的github下找到了thrid/ycmd/third/regex,然后发现子项目的地址https://github.com/ycm-core/regex.git,然后自己git clone下来,手动拷贝到那个目录就好,例如git clone https://github.com/ycm-core/regex.git
     ```   
-> 5. 不能补全另一个文件中自定义的类
+ 5. 不能补全另一个文件中自定义的类
     YCM 只在如下两种场景下触发语义补全：一是补全标识符所在文件必须在 buffer 中（即，文件已打开）；一是在对象后键入 .、指针后键入 ->、名字空间后键入 ::。
     所以必须打开那个文件才行.
-> 6. 如果没有boost
+6. 如果没有boost
     那就自己下载安装boost
     以下参照: https://www.cnblogs.com/smallredness/p/9245127.html
     ```
@@ -323,6 +305,7 @@ Table of Contents
     安装boost库
     ./b2 install --prefix=/usr
     ```
+7. 编译警告可以参见：https://blog.csdn.net/qq_17308321/article/details/79979514
 
 ## 4. 插件
 
@@ -462,7 +445,6 @@ let g:disable_protodef_sorting=1
 #### 4.2.3 ultisnips模板补全
 
 **配置**
-```
 " SirVer/ultisnips                                模板补全
 " mysnippets默认路径: ~/.vim/bundle/ultisnips/mysnippets/cpp.snippets
 let g:UltiSnipsSnippetDirectories=["~/.mysnippets"]
@@ -470,9 +452,8 @@ let g:UltiSnipsSnippetDirectories=["~/.mysnippets"]
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
-```
 
-> 注意: 编辑`~/.mysnippets/cpp.snippets`可以修改模板,改到这个位置,相当于程序和配置分离,这样可以方便推送到GitHub上保存,换个环境也可以直接用了
+注意: 编辑`~/.mysnippets/cpp.snippets`可以修改模板,改到这个位置,相当于程序和配置分离,这样可以方便推送到GitHub上保存,换个环境也可以直接用了
 
 **使用**
 按照博客设置即可, 按`;<tab>`就可以, 再按一次就可以跳到下一个位置, 例如if(1){2}.
@@ -499,7 +480,7 @@ let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
 剩下的感觉效果不大这里不记了.
 
-> 注意：`snippet b "bracket" I`这里的I表示只有遇到整词b才会补全,printfb这样的就不会, 如果改成i就会遇到b字符就补全
+注意：`snippet b "bracket" I`这里的I表示只有遇到整词b才会补全,printfb这样的就不会, 如果改成i就会遇到b字符就补全
 
 ### 4.3 主题颜色类
 
@@ -549,7 +530,7 @@ let g:cpp_experimental_simple_template_highlight = 1
 syntax keyword cppSTLtype initializer_list
 ```
 
-> 注意: 需要确保以下内容:
+注意: 需要确保以下内容:
     ```
     " 开启文件类型侦测
     filetype on
@@ -582,12 +563,12 @@ autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 ```
 
-> 注意: 
-> 1. 需要安装 clang-format
+注意: 
+1. 需要安装 clang-format
     ```sh
     apt install clang-format
     ```
-> 2. 可以新建`~/.clang-format`具体配置格式, 参考文件保存在: https://github.com/whuwzp/vim_config 
+2. 可以新建`~/.clang-format`具体配置格式, 参考文件保存在: https://github.com/whuwzp/vim_config 
 
 #### 4.4.4  nerdcommenter代码注释
 
@@ -602,6 +583,7 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'yegappan/grep'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Yggdroot/LeaderF'
 ```
 
 
@@ -623,7 +605,7 @@ Plugin 'terryma/vim-multiple-cursors'
 " 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
 noremap <Leader>sp :CtrlSF<CR>
 ```
-> 注意: 需要安装grep-ack工具
+注意: 需要安装grep-ack工具
     ```
     sudo apt install grep-ack
     ```
@@ -637,9 +619,11 @@ Plugin 'vim-scripts/indexer.tar.gz'
 Plugin 'vim-scripts/DfrankUtil'
 Plugin 'vim-scripts/vimprj'
 Plugin 'kshenoy/vim-signature'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'skywind3000/gutentags_plus'
 ```
 
-> 注意:需要安装ctags, `sudo apt install ctags`
+注意:需要安装ctags, `sudo apt install ctags`
 
 原理是在工程目录下生成名为tags的文件，根据该文件跳转。
 
@@ -682,19 +666,17 @@ nmap <Leader>tp :tprevious<CR>
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
 ```
 
-> 注意: indexer 还要自己的配置文件，用于设定各个工程的根目录路径，配置文件位于 `~/.indexer_files`，内容可以设定为：
-    
-	```
+注意: indexer 还要自己的配置文件，用于设定各个工程的根目录路径，配置文件位于 `~/.indexer_files`，内容可以设定为：
+    ```
     --------------- ~/.indexer_files ---------------  
     [foo] 
     /data/workplace/foo/src/
     [bar] 
     /data/workplace/bar/src/
     ```
-   
-   只有添加了目录才会自动生成更新tags文件(buffer中的估计是,没有落地成文件).
+    只有添加了目录才会自动生成更新tags文件(buffer中的估计是,没有落地成文件).
 
-> 注意: 必须用全路径,万万不要用`~/test/`,要用`/home/username/test/`
+注意: 必须用全路径,万万不要用`~/test/`,要用`/home/username/test/`
 
 #### 4.6.2 tagbar标签栏
 
@@ -761,6 +743,40 @@ let g:SignatureMap = {
 - mp: 跳转至上一个书签
 - mda: 删除所有的书签,marks del all
 
+#### 4.6.4 LeaderF 文档和buffer搜索
+
+> 注意: 由于leaderf在一个目录查找后就会把那个目录当作当前默认目录,所以一旦在其他目录查找了, 就很难切回来, 改进的是:这里的`%:h`是表示当前文件的目录路径
+
+```
+" 在当前目录查找
+nnoremap <leader>fl :LeaderfFile %:h<cr>
+" 在当前用户目录查找
+nnoremap <leader>fu :LeaderfFile ~<cr>
+" 自定义查找位置, 可以输入../之类的
+nnoremap <leader>fc :LeaderfFile 
+
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+" 排除文件
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git'],
+            \ 'file': ['*.bak','*.a','*.o','*.so']
+            \}
+```
+
+- `;f`: 查找文件
+- `;b`: 查找buffer
+
 ### 4.7 结对符相关
 
 ```
@@ -814,6 +830,8 @@ nmap <silent> <Leader>sw :FSHere<cr>
 初始状态先打开了接口文件 MyClass.h，键入 ;sw 后，vim 在新 buffer 中打开实现文件 MyClass.cpp，并在当前窗口中显示；再次键入 ;sw 后，当前窗口切回接口文件。 
 
 #### 4.8.2 nerdtree项目文档查看
+
+> 介于LeaderF功能和展示都比较方便好, 已经不再使用nerdtree, 用LeaderF代替, nerdtree的一大缺点是占用了buffer,给buffer切换带来麻烦.
 
 ```
 Plugin 'scrooloose/nerdtree'
