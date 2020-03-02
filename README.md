@@ -77,7 +77,7 @@ Table of Contents
     - GitHub上保存: `.vimrc`, `.clang-format`, `.ycm_extra_conf.py`等配置文件, 地址: https://github.com/whuwzp/vim_config
 5. 主要参考网址如下, 基本上都是参照官方方法, 而不是在博客网站上拾人牙慧: 
     - vim源码编译: https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
-    - llvm clang编译: https://llvhttps://m.org/docs/GettingStarted.html#getting-started-with-llvm
+    - llvm clang编译: https://m.org/docs/GettingStarted.html#getting-started-with-llvm
     - youcompleteme编译使用: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
     - 其他c++插件: https://github.com/yangyangwithgnu/use_vim_as_ide。
 
@@ -125,7 +125,7 @@ Table of Contents
 
 ## 2. 源码编译安装llvm clang
 
-参考网址: https://llvhttps://m.org/docs/GettingStarted.html#getting-started-with-llvm
+参考网址: https://m.org/docs/GettingStarted.html#getting-started-with-llvm
 
 1. 安装准备环境
     ```sh
@@ -462,6 +462,7 @@ let g:disable_protodef_sorting=1
 #### 4.2.3 ultisnips模板补全
 
 **配置**
+```
 " SirVer/ultisnips                                模板补全
 " mysnippets默认路径: ~/.vim/bundle/ultisnips/mysnippets/cpp.snippets
 let g:UltiSnipsSnippetDirectories=["~/.mysnippets"]
@@ -469,6 +470,7 @@ let g:UltiSnipsSnippetDirectories=["~/.mysnippets"]
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+```
 
 > 注意: 编辑`~/.mysnippets/cpp.snippets`可以修改模板,改到这个位置,相当于程序和配置分离,这样可以方便推送到GitHub上保存,换个环境也可以直接用了
 
@@ -681,14 +683,16 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 ```
 
 > 注意: indexer 还要自己的配置文件，用于设定各个工程的根目录路径，配置文件位于 `~/.indexer_files`，内容可以设定为：
-    ```
+    
+	```
     --------------- ~/.indexer_files ---------------  
     [foo] 
     /data/workplace/foo/src/
     [bar] 
     /data/workplace/bar/src/
     ```
-    只有添加了目录才会自动生成更新tags文件(buffer中的估计是,没有落地成文件).
+   
+   只有添加了目录才会自动生成更新tags文件(buffer中的估计是,没有落地成文件).
 
 > 注意: 必须用全路径,万万不要用`~/test/`,要用`/home/username/test/`
 

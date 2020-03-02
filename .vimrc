@@ -44,8 +44,19 @@ nnoremap <Leader>wk <C-W>k
 nnoremap <Leader>wj <C-W>j
 
 " 多文档切换快捷键
-map <leader>> :w<cr>:bn<cr>
-map <leader>< :w<cr>:bp<cr>
+map <leader>. :w<cr>:bn<cr>
+map <leader>, :w<cr>:bp<cr>
+noremap <silent><leader>1 :bn1<cr>
+noremap <silent><leader>2 :bn2<cr>
+noremap <silent><leader>3 :bn3<cr>
+noremap <silent><leader>4 :bn4<cr>
+noremap <silent><leader>5 :bn5<cr>
+noremap <silent><leader>6 :bn6<cr>
+noremap <silent><leader>7 :bn7<cr>
+noremap <silent><leader>8 :bn8<cr>
+noremap <silent><leader>9 :bn9<cr>
+noremap <silent><leader>0 :bn10<cr>
+
 
 fun! ToggleFullscreen()
 	call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
@@ -154,6 +165,9 @@ Plugin 'kshenoy/vim-signature'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
 
+" buffer相关
+Plugin 'Shougo/unite.vim'
+
 " 其他
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'scrooloose/nerdtree'
@@ -171,6 +185,8 @@ highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 let g:ycm_complete_in_comments=1
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
 let g:ycm_confirm_extra_conf=0
+" 使用全局的ycm_extra_conf文件配置
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 " 开启 YCM 标签补全引擎
 let g:ycm_collect_identifiers_from_tags_files=1
 " 引入 C++ 标准库tags
