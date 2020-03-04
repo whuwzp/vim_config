@@ -8,16 +8,18 @@
 # !/bin 
 # 总的效果就是git只跟踪src和bin两个文件夹
 
-!.gitignore
 !.vimrc
 !.indexer_files
 !.clang-format
 !.ycm_extra_conf.py
 !.mysnippets/
+!README.md
 
 # 这是工程项目的示例,里面有test/CMakeLists.txt和test/.ycm_extra_conf.py, 供参考
 !/test/
 
-
-!README.md
+!gh-md-toc
 !.gitignore
+
+# 用于拷贝cmakelists.txt等
+!.mycp.sh

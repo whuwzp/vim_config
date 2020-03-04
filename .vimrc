@@ -7,7 +7,10 @@ set nocompatible
 " 不用保存就可以切换 
 set hidden
 
-" 定义快捷键的前缀，即<Leader>                  Leader
+" 搜索时不分大小写
+set ic
+
+" 定义快捷键的前缀，即<leader>                  Leader
 let mapleader=";"
 
 " 开启文件类型侦测
@@ -28,9 +31,9 @@ set hlsearch
 nnoremap <leader>no :noh<CR>
 
 " 设置快捷键将选中文本块复制至系统剪贴板        复制粘贴   
-vnoremap <Leader>y "+y
+vnoremap <leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
-nmap <Leader>p "+p
+nmap <leader>p "+p
 " 设置纯文本复制粘贴
 map <F9> :set paste<CR>i
 map <F10> :set nopaste<CR>
@@ -38,27 +41,27 @@ map <F10> :set nopaste<CR>
 " 依次遍历子窗口                                窗口 多文档相关的
 nnoremap nw <C-W><C-W>
 " 跳转至右方的窗口     
-nnoremap <Leader>wl <C-W>l
+nnoremap <leader>wl <C-W>l
 " 跳转至左方的窗口
-nnoremap <Leader>wh <C-W>h
+nnoremap <leader>wh <C-W>h
 " 跳转至上方的子窗口
-nnoremap <Leader>wk <C-W>k
+nnoremap <leader>wk <C-W>k
 " 跳转至下方的子窗口
-nnoremap <Leader>wj <C-W>j
+nnoremap <leader>wj <C-W>j
 
 " 多文档切换快捷键
 map <leader>. :w<cr>:bn<cr>
 map <leader>, :w<cr>:bp<cr>
-noremap <silent><leader>1 :b1<cr>
-noremap <silent><leader>2 :b2<cr>
-noremap <silent><leader>3 :b3<cr>
-noremap <silent><leader>4 :b4<cr>
-noremap <silent><leader>5 :b5<cr>
-noremap <silent><leader>6 :b6<cr>
-noremap <silent><leader>7 :b7<cr>
-noremap <silent><leader>8 :b8<cr>
-noremap <silent><leader>9 :b9<cr>
-noremap <silent><leader>0 :b10<cr>
+noremap <silent><leader>1 :bn1<cr>
+noremap <silent><leader>2 :bn2<cr>
+noremap <silent><leader>3 :bn3<cr>
+noremap <silent><leader>4 :bn4<cr>
+noremap <silent><leader>5 :bn5<cr>
+noremap <silent><leader>6 :bn6<cr>
+noremap <silent><leader>7 :bn7<cr>
+noremap <silent><leader>8 :bn8<cr>
+noremap <silent><leader>9 :bn9<cr>
+noremap <silent><leader>0 :bn10<cr>
 
 
 fun! ToggleFullscreen()
@@ -119,18 +122,20 @@ map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
 " Man命令查看各类man信息                           man帮助
 source $VIMRUNTIME/ftplugin/man.vim
 " 定义:Man命令查看各类man信息的快捷键
-nmap <leader>man :Man 3 <cword><CR>
-nmap <leader>vman :VMan 3 <cword><CR>
+nmap <leader>m2 :Man 2 <cword><CR>:set nu<CR>
+nmap <leader>m3 :Man 3 <cword><CR>:set nu<CR>
+
 
 
 "  编译                                                编译
-nmap <leader>make :!rm -rf main<CR>:wa<CR>:make<CR><CR>:cw<CR>
-nmap <Leader>go :!rm -rf main<CR>:wa<CR>:make<CR>:cw<CR><CR>:!./main<CR>
+nmap <leader>mk :!rm -rf main<CR>:wa<CR>:make<CR><CR>:cw<CR>
+nmap <leader>mg :!rm -rf main<CR>:wa<CR>:make<CR>:cw<CR><CR>:!./main<CR>
 
 "---------------------------------------------------------------
 " vundle 插件设置
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/ctrlp.vim
 " vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -156,7 +161,7 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'yegappan/grep'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Yggdroot/LeaderF'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " ctags标签书签相关
 Plugin 'majutsushi/tagbar'
@@ -249,16 +254,16 @@ let g:indent_guides_start_level=2
 " 色块宽度
 let g:indent_guides_guide_size=1
 " 快捷键 i 开/关缩进可视化
-nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
 "clang-format                                          代码风格格式化
-" map to <Leader>cf in C++ code
+" map to <leader>cf in C++ code
 " 可以在~/.clang-format中编辑更加详细的设置
 set ts=4
 " 退出insert模式时自动格式化, 如果加了这个那么ultisnip插件就会受影响,因为模板补全后会由insert变为select,这样会同时触发clang-format和ultisnip 
 " let g:clang_format#auto_format_on_insert_leave=1
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
 
 " nerdcommenter                                    代码注释
 " 默认<leader>cc, <leader>cu
@@ -266,31 +271,40 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " -------------------------------------------------------内容搜索替换
 " ctrlsf.vim                                      搜索               
 " 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
-noremap <Leader>sp :CtrlSF<CR>
+noremap <leader>sp :CtrlSF<CR>
 
 " vim-multiple-cursors                          选中多选
 " 默认是ctrl+N,这里不修改
 " let g:multi_cursor_next_key='<S-n>'
 " let g:multi_cursor_skip_key='<S-k>'
 
-" LeaderF                                           buffer file 搜索
-" 在当前目录查找
-nnoremap <leader>fl :LeaderfFile %:h<cr>
-" 在当前用户目录查找
-nnoremap <leader>fu :LeaderfFile ~<cr>
-" 自定义查找位置, 可以输入../之类的
-nnoremap <leader>fc :LeaderfFile 
-" don't show the help in normal mode
-let g:Lf_HideHelp = 1
-let g:Lf_UseCache = 0
-let g:Lf_IgnoreCurrentBufferName = 1
-" popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-" 上下键切换选项
-let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+" ctrlp                                                          搜索文件 buffer
+" 中文版使用说明：~/.vim/bundle/ctrlp.vim/doc/ctrlp.cnx
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_by_filename = 1
+let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cache_dir = '~/.cache/ctrlp'
 
-" ----------------------------------------------------------ctags标签相关
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(swp|so|a)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+" 当前文件所在目录
+nnoremap <leader>fl :CtrlP %:h<cr>
+" 当前用户目录
+nnoremap <leader>fu :CtrlP ~<cr>
+" 自定义目录
+nnoremap <leader>fd :CtrlP 
+" buffer
+nnoremap <leader>fb :CtrlPBuffer<cr>
+" mixed mode
+nnoremap <leader>fm :CtrlPMixed<cr>
+" history
+nnoremap <leader>fh :CtrlPMRU
+
+"---------------------------------------------------------------ctags标签相关
 " indexer                                         自动更新标签                                                     
 " 修改ctags生成tags文件的参数
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
@@ -300,7 +314,7 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边
 let tagbar_left=1
 " 设置显示／隐藏标签列表子窗口的快捷键。速记：tag bar
-nnoremap <Leader>tb :TagbarToggle<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
 " 设置标签子窗口的宽度
 let tagbar_width=16
 " tagbar 子窗口中不显示冗余帮助信息 
@@ -392,22 +406,6 @@ vmap ] S]
 vmap ) S)
 vmap > S>
 
-"------------------------------------------------------其他
-" nerdtree                                        查看工程文件
-" nmap <leader>fl :NERDTreeToggle<CR>
-" 设置NERDTree子窗口宽度
-let NERDTreeWinSize=16
-" 设置NERDTree子窗口位置
-let NERDTreeWinPos="right"
-" 显示隐藏文件
-let NERDTreeShowHidden=1
-" NERDTree 子窗口中不显示冗余帮助信息
-let NERDTreeMinimalUI=1
-" 删除文件时自动删除文件对应 buffer
-let NERDTreeAutoDeleteBuffer=1
-" 设置自动打开文件列表
-" autocmd vimenter * NERDTree
-
 "  vim-fswitch                                        h和cpp快速切换                                                   
-nmap <silent> <Leader>sw :w<CR>:FSHere<cr>
+nmap <silent> <leader>sw :w<CR>:FSHere<cr>
 

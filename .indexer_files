@@ -1,5 +1,8 @@
 --------------- ~/.indexer_files ---------------  
+
 [test] 
 /home/ing/test/
-[muduo]
-/home/ing/muduo/
+[linuxc]
+/home/ing/linuxc/
+[primer]
+/home/ing/cprimer/
