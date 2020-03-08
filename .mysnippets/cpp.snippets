@@ -9,6 +9,35 @@ endsnippet
 snippet inc 
 #include <${1:TODO}>${2} 
 endsnippet 
+
+# function
+snippet func
+${1:int} ${2:func}(${3:/*args*/}){
+	${4://TODO}
+	return 0;
+}
+endsnippet
+
+# buf
+snippet buf
+char ${1:buf}[${2:2048}] = {0};
+${3://TODO}
+endsnippet
+
+# new buf
+snippet Buf
+char* ${1:buf} = new char[${2:2048}];
+memset($1, 0, $2);
+${3://TODO}
+endsnippet
+
+# main 
+snippet main 
+int main(${1:/* args */}) { 
+    ${2:TODO} 
+	return 0;
+} 
+endsnippet 
 #================================= 
 #结构语句 
 #================================= 
@@ -88,7 +117,7 @@ for (const auto& e : ${1:c}) {
 endsnippet 
 # For Loop 
 snippet for 
-for (unsigned ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) { 
+for (int ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) { 
     ${4:TODO} 
 } 
 endsnippet 

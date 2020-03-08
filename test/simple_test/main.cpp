@@ -1,4 +1,4 @@
-#include "myinclude/header.h"
+#include "include/header.h"
 #include <iostream>
 #include <stdio.h>
 #include <sys/socket.h>
@@ -11,8 +11,10 @@ struct mystruct {
     int c;
 };
 int main() {
-    std::cout << "hello world" << std::endl;
-    cout << "hello world!" << endl;
+	std::cout << "input: " ;
+	string str;
+	cin>>str;
+	cout << str << endl;
     //     ^ Code complete here by typing ":"
     mystruct test;
 

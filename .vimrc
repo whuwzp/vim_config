@@ -1,6 +1,8 @@
 "-------------------------
 " 系统设置
 
+set mouse=a
+
 " 关闭兼容模式
 set nocompatible
 
@@ -11,7 +13,7 @@ set hidden
 set ic
 
 " 定义快捷键的前缀，即<leader>                  Leader
-let mapleader=";"
+let mapleader="\\"
 
 " 开启文件类型侦测
 filetype on
@@ -50,8 +52,8 @@ nnoremap <leader>wk <C-W>k
 nnoremap <leader>wj <C-W>j
 
 " 多文档切换快捷键
-map <leader>. :w<cr>:bn<cr>
-map <leader>, :w<cr>:bp<cr>
+map <leader>] :w<cr>:bn<cr>
+map <leader>[ :w<cr>:bp<cr>
 noremap <silent><leader>1 :bn1<cr>
 noremap <silent><leader>2 :bn2<cr>
 noremap <silent><leader>3 :bn3<cr>
@@ -122,14 +124,19 @@ map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
 " Man命令查看各类man信息                           man帮助
 source $VIMRUNTIME/ftplugin/man.vim
 " 定义:Man命令查看各类man信息的快捷键
+nmap <leader>m1 :Man 1 <cword><CR>:set nu<CR>
 nmap <leader>m2 :Man 2 <cword><CR>:set nu<CR>
 nmap <leader>m3 :Man 3 <cword><CR>:set nu<CR>
-
+nmap <leader>m4 :Man 4 <cword><CR>:set nu<CR>
+nmap <leader>m5 :Man 5 <cword><CR>:set nu<CR>
+nmap <leader>m6 :Man 6 <cword><CR>:set nu<CR>
+nmap <leader>m7 :Man 7 <cword><CR>:set nu<CR>
+nmap <leader>m8 :Man 8 <cword><CR>:set nu<CR>
 
 
 "  编译                                                编译
-nmap <leader>mk :!rm -rf main<CR>:wa<CR>:make<CR><CR>:cw<CR>
-nmap <leader>mg :!rm -rf main<CR>:wa<CR>:make<CR>:cw<CR><CR>:!./main<CR>
+nmap <leader>mk :!./build.sh<CR>
+nmap <leader>mg :!./run.sh<CR>
 
 "---------------------------------------------------------------
 " vundle 插件设置
@@ -204,14 +211,14 @@ inoremap <leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
 set completeopt-=preview
 " 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_min_num_of_chars_for_completion=3
 " 禁止缓存匹配项，每次都重新生成匹配项
 let g:ycm_cache_omnifunc=0
 " 语法关键字补全           
 let g:ycm_seed_identifiers_with_syntax=1
 let OmniCpp_DefaultNamespaces = ["_GLIBCXX_STD"]
 " 设置用于关闭补全列表的快捷键，默认为ctrl+y
-let g:ycm_key_list_stop_completion = ["<leader>'"]
+let g:ycm_key_list_stop_completion = ["<leader>"]
 
 " SirVer/ultisnips                                模板补全
 " mysnippets路径: ~/.vim/bundle/ultisnips/mysnippets/cpp.snippets
@@ -225,6 +232,7 @@ let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 let g:protodefprotogetter='~/.vim/bundle/vim-protodef/pullproto.pl'
 " 成员函数的实现顺序与声明顺序一致
 let g:disable_protodef_sorting=1
+nmap <buffer> <silent> <leader>cpp :set paste<cr>i<c-r>=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})<cr><esc>='[:set nopaste<cr>
  
 " ----------------------------------------------------主题颜色类
 " airline                                            状态栏等配色
