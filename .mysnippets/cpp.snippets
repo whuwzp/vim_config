@@ -10,6 +10,12 @@ snippet inc
 #include <${1:TODO}>${2} 
 endsnippet 
 
+# #include <...> 
+snippet def
+#define ${1:key} ${2:value} 
+endsnippet 
+
+
 # function
 snippet func
 ${1:int} ${2:func}(${3:/*args*/}){
@@ -61,7 +67,7 @@ else {
 endsnippet 
 # return 
 snippet re 
-return(${1:/* condition */}); 
+return ${1:/* condition */}; 
 endsnippet 
 # Do While Loop 
 snippet do 
@@ -167,6 +173,14 @@ class ${1:`Filename('$1_t', 'name')`}
     private: 
 }; 
 endsnippet 
+
+# struct
+snippet str
+struct ${1:name}{
+	${2:TODO}
+};
+
+endsnippet
 #================================= 
 #结对符 
 #================================= 
@@ -175,9 +189,9 @@ snippet b "bracket" i
 (${1})${2} 
 endsnippet 
 # 方括号 square bracket，设定为 st 而非 sb，避免与 b 冲突
-snippet st "square bracket" i 
-[${1}]${2} 
-endsnippet 
+# snippet st "square bracket" i 
+# [${1}]${2} 
+# endsnippet 
 # 大括号 brace 
 snippet br "brace" i 
 { 

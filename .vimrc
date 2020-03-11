@@ -132,7 +132,7 @@ nmap <leader>m5 :Man 5 <cword><CR>:set nu<CR>
 nmap <leader>m6 :Man 6 <cword><CR>:set nu<CR>
 nmap <leader>m7 :Man 7 <cword><CR>:set nu<CR>
 nmap <leader>m8 :Man 8 <cword><CR>:set nu<CR>
-
+nmap <leader>md :Man 
 
 "  编译                                                编译
 nmap <leader>mk :!./build.sh<CR>
