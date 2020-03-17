@@ -135,8 +135,8 @@ nmap <leader>m8 :Man 8 <cword><CR>:set nu<CR>
 nmap <leader>md :Man 
 
 "  编译                                                编译
-nmap <leader>mk :!./build.sh<CR>
-nmap <leader>mg :!./run.sh<CR>
+nmap <leader>mk :w<CR>:!./build.sh<CR>
+nmap <leader>mg :w<CR>:!./run.sh<CR>
 
 "---------------------------------------------------------------
 " vundle 插件设置
@@ -205,7 +205,7 @@ let g:ycm_collect_identifiers_from_tags_files=1
 " 引入 C++ 标准库tags
 " set tags+=/usr/include/c++/7/stdcpp.tags, 我只使用clang中的就好
 set tags+=/usr/local/include/c++/v1/clang.tags
-" set tags+=/usr/include/sys.tags,这个太大了了
+set tags+=/usr/include/x86_64-linux-gnu/sys/sys.tags
 " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
 inoremap <leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
@@ -218,7 +218,7 @@ let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
 let OmniCpp_DefaultNamespaces = ["_GLIBCXX_STD"]
 " 设置用于关闭补全列表的快捷键，默认为ctrl+y
-let g:ycm_key_list_stop_completion = ["<leader>"]
+let g:ycm_key_list_stop_completion = ["/"]
 
 " SirVer/ultisnips                                模板补全
 " mysnippets路径: ~/.vim/bundle/ultisnips/mysnippets/cpp.snippets

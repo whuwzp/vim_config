@@ -11,6 +11,9 @@
     - llvm clang编译: https://llvhttps://m.org/docs/GettingStarted.html#getting-started-with-llvm
     - youcompleteme编译使用: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
     - 其他c++插件: https://github.com/yangyangwithgnu/use_vim_as_ide。
+6. 实时更新说明地址：
+	- https://www.cnblogs.com/whuwzp/p/ubuntu_vim_0.html
+	- https://whuwzp.gitee.io/tech-6-vim%E4%BD%BF%E7%94%A8.html
 
 Table of Contents
 =================

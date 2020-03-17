@@ -27,7 +27,6 @@ endsnippet
 # buf
 snippet buf
 char ${1:buf}[${2:2048}] = {0};
-${3://TODO}
 endsnippet
 
 # new buf
@@ -123,7 +122,7 @@ for (const auto& e : ${1:c}) {
 endsnippet 
 # For Loop 
 snippet for 
-for (int ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) { 
+for (${2:i} = 0; $2 < ${1:count}; ${3:++}$2) { 
     ${4:TODO} 
 } 
 endsnippet 

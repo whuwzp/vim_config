@@ -11,7 +11,7 @@ ObjCSpaceAfterProperty: false
 # OC block后面的缩进
 ObjCBlockIndentWidth: 4
 # 是否允许短方法单行
-AllowShortFunctionsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: true
 # 是否允许短if单行 If false, if (a) return; 可以放到同一行
 AllowShortIfStatementsOnASingleLine: true
 #注释对齐
@@ -43,4 +43,4 @@ SpaceAfterCStyleCast: false
 #tab键盘的宽度
 TabWidth: 4
 UseTab: Never
-
+AllowShortBlocksOnASingleLine: true
