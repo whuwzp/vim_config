@@ -204,8 +204,9 @@ let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1
 " 引入 C++ 标准库tags
 " set tags+=/usr/include/c++/7/stdcpp.tags, 我只使用clang中的就好
-set tags+=/usr/local/include/c++/v1/clang.tags
-set tags+=/usr/include/x86_64-linux-gnu/sys/sys.tags
+set tags+=/usr/local/include/c++/v1/clang.tags " c++ 标准
+set tags+=/usr/include/ctags.tags " 包含一些Linux系统的
+
 " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
 inoremap <leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
