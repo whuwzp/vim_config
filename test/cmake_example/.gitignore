@@ -1,0 +1,4 @@
+# 忽略build文件夹
+
+/build/
+/bin/
