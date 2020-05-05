@@ -25,7 +25,7 @@ set backspace=indent,eol,start
 " ESC键映射jk
 inoremap jk <ESC>
 " 删除buffer文档
-nmap <leader>bd :bd<CR>i
+nmap <leader>bd :bd<CR>
 
 " 高亮显示搜索结果                              高亮
 set hlsearch
@@ -52,8 +52,8 @@ nnoremap <leader>wk <C-W>k
 nnoremap <leader>wj <C-W>j
 
 " 多文档切换快捷键
-map <leader>] :w<cr>:bn<cr>
-map <leader>[ :w<cr>:bp<cr>
+map <leader>] :bn<cr><ESC>
+map <leader>[ :bp<cr><ESC>
 noremap <silent><leader>1 :bn1<cr>
 noremap <silent><leader>2 :bn2<cr>
 noremap <silent><leader>3 :bn3<cr>
@@ -104,7 +104,7 @@ syntax on
 
 " 基于缩进或语法进行代码折叠                      代码折叠 
 " set foldmethod=indent
-set foldmethod=syntax
+set foldmethod=manual
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 
@@ -149,6 +149,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " 补全类
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'derekwyatt/vim-fswitch'
 Plugin 'derekwyatt/vim-protodef'
 Plugin 'SirVer/ultisnips'
 
@@ -182,7 +183,6 @@ Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
 
 " 其他
-Plugin 'derekwyatt/vim-fswitch'
 Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
