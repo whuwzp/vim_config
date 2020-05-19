@@ -1,6 +1,6 @@
 "-------------------------
 " 系统设置
-
+set encoding=utf-8
 set mouse=a
 
 " 关闭兼容模式
@@ -317,7 +317,7 @@ nnoremap <leader>fh :CtrlPMRU
 " indexer                                         自动更新标签                                                     
 " 修改ctags生成tags文件的参数
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
-" let g:indexer_disableCtagsWarning=1
+let g:indexer_disableCtagsWarning=1
 
 " tagbar                                              标签窗口
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边

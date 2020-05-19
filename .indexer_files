@@ -2,9 +2,5 @@
 
 [test] 
 /home/ing/test/
-[linuxc]
-/home/ing/linuxc/
-[primer]
-/home/ing/cprimer/
-[oneshell]
+[oneshell] 
 /home/ing/oneshell/
